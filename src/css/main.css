@@ -1,0 +1,34 @@
+html, body {
+  margin: 0; 
+  height: 100%; 
+  overflow: hidden;
+}
+
+#container {
+  height: 100%;
+}
+
+#topmenu {
+  border-radius: 0;
+}
+
+#sideMenu {
+  height: 100%;
+  background-color: #F1F1F1;
+}
+
+#sideMenuTitle {
+  text-align: center;
+}
+
+#map {
+  height: 100%;
+}
+
+.option {
+  margin-left: 20px;
+}
+
+.popupHeader {
+  font-size: 16px;
+}

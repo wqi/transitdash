@@ -1,0 +1,35 @@
+{
+  "name": "dashboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wqi/transportation-dashboard.git"
+  },
+  "author": "William Qi <hello@williamqi.com> (http://williamqi.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wqi/transportation-dashboard/issues"
+  },
+  "homepage": "https://github.com/wqi/transportation-dashboard#readme",
+  "devDependencies": {
+    "css-loader": "^0.28.4",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-import": "^2.6.1",
+    "file-loader": "^0.11.2",
+    "image-webpack-loader": "^3.3.1",
+    "style-loader": "^0.18.2",
+    "webpack": "^3.0.0"
+  },
+  "dependencies": {
+    "d3": "^4.9.1",
+    "jquery": "^3.2.1",
+    "leaflet": "^1.1.0"
+  }
+}
