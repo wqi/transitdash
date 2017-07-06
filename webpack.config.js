@@ -23,8 +23,12 @@ module.exports = {
             loader: 'image-webpack-loader',
             query: {
               progressive: true,
-              optimizationLevel: 7,
-              interlaced: false,
+              gifsicle: {
+                interlaced: false,
+              },
+              optipng: {
+                optimizationLevel: 4,
+              },
               pngquant: {
                 quality: '65-90',
                 speed: 4,
@@ -38,5 +42,10 @@ module.exports = {
         loader: 'file-loader?name=public/fonts/[name].[ext]',
       },
     ],
+  },
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 8080,
   },
 };
