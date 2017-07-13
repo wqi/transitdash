@@ -25,6 +25,10 @@ html, body {
   margin-left: 20px;
 }
 
+.mapPopup {
+  font-size: 13px;
+}
+
 .popupHeader {
   font-size: 16px;
 }
@@ -41,5 +45,9 @@ html, body {
 .info h4 {
     margin: 0 0 5px;
     color: #777;
+}
+
+.checkbox {
+  margin-top: 10px;
 }
 

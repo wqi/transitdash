@@ -2,7 +2,8 @@ import L from 'leaflet';
 import * as d3 from 'd3';
 
 import addCTLayer from './js/ctLayer';
-import addBusStopLayer from './js/busStopLayer';
+import initBusStopLayer from './js/busStopLayer';
+import initBusRouteLayer from './js/busRouteLayer';
 
 import './css/main.css';
 import './css/leaflet.css';
@@ -22,9 +23,10 @@ d3.queue()
     .defer(d3.json, 'data/agricultural_land_reserve.geojson')
     .defer(d3.json, 'data/surrey_2016_filtered.geojson')
     .defer(d3.json, 'data/surrey_stops.geojson')
+    .defer(d3.json, 'data/bus_routes.geojson')
     .await(drawLayers);
 
-function drawLayers(err, alrBoundaries, ctBoundaries, stopLocations) {
+function drawLayers(err, alrBoundaries, ctBoundaries, busStops, busRoutes) {
   if (err) {
     console.error(err);
     return;
@@ -32,7 +34,8 @@ function drawLayers(err, alrBoundaries, ctBoundaries, stopLocations) {
 
   regionInfoLayer = addRegionInfoLayer();
   addCTLayer(map, alrBoundaries, ctBoundaries, regionInfoLayer);
-  addBusStopLayer(map, stopLocations);
+  initBusStopLayer(map, busStops);
+  initBusRouteLayer(map, busRoutes);
 }
 
 function addRegionInfoLayer() {
@@ -46,8 +49,13 @@ function addRegionInfoLayer() {
 
   regionInfo.update = function update(regionProps) {
     let regionInfoBody;
-    if (regionProps) {
-      regionInfoBody = `<b>${regionProps.CTUID}</b><br />`;
+    if (regionProps && regionProps.CTUID != 'ALR') {
+      regionInfoBody = `<b>Census Tract ID:</b> ${regionProps.CTUID}<br />
+                        <b>Number of Bus Stops:</b> ${regionProps.number_of_bus_stops}<br />
+                        <b>Number of Bus Routes:</b> ${regionProps.number_of_bus_stops}<br />
+                        <b>Population:</b> ${Math.floor(regionProps.population)}<br />
+                        <b>Points of Interest:</b> ${regionProps.sum_of_points_of_interest}<br />`;
+      console.log(regionProps);
     } else {
       regionInfoBody = 'Hover over a region';
     }
