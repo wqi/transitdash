@@ -17,6 +17,11 @@ html, body {
   text-align: center;
 }
 
+#choroplethFeature {
+  margin-top: 30px;
+  margin-left: 17px;
+}
+
 #map {
   height: 100%;
 }

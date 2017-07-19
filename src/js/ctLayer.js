@@ -1,38 +1,33 @@
 import L from 'leaflet';
+import $ from 'jquery';
 
+import 'leaflet-choropleth';
+import '../css/semantic';
+
+let map;
+let ctBoundaries;
 let regionInfoLayer;
-let alrLayer;
 let ctLayer;
 
-function drawALRBoundaries(map, alrBoundaries) {
-  // Draw ALR boundaries
-  const alrStyle = {
-    color: 'white',
-    fillColor: 'green',
-    weight: 1,
-    fillOpacity: 0.2,
-  };
-  const alrOnEach = (feature, layer) => {
-    layer.on({
-      mouseover: highlightFeature,
-      mouseout: (e) => {
-        alrLayer.resetStyle(e.target);
-        resetHighlight();
-      },
-    });
-  };
-  alrLayer = L.geoJson(alrBoundaries, { style: alrStyle, onEachFeature: alrOnEach }).addTo(map);
-}
+$('#choroplethDropdown').dropdown({
+  onChange: (val) => {
+    choroplethMode = val;
+    map.removeLayer(ctLayer);
+    drawCTBoundaries(map, ctBoundaries, val);
+    console.log(val);
+  },
+});
 
-function drawCTBoundaries(map, ctBoundaries) {
+function drawCTBoundaries(map, ctBoundaries, choroplethMode) {
   // Draw census tract boundaries
   const ctStyle = {
     color: 'white',
-    fillColor: 'blue',
     weight: 1,
-    fillOpacity: 0.2,
+    fillOpacity: 0.5,
   };
+
   const ctOnEach = (feature, layer) => {
+    console.log(feature.properties);
     layer.on({
       mouseover: highlightFeature,
       mouseout: (e) => {
@@ -41,7 +36,7 @@ function drawCTBoundaries(map, ctBoundaries) {
       },
     });
   };
-  ctLayer = L.geoJson(ctBoundaries, { style: ctStyle, onEachFeature: ctOnEach }).addTo(map);
+  ctLayer = L.choropleth(ctBoundaries, { valueProperty: choroplethMode, scale: ['#BFBFBF', 'red'], style: ctStyle, onEachFeature: ctOnEach }).addTo(map);
 }
 
 function highlightFeature(e) {
@@ -56,9 +51,10 @@ function resetHighlight() {
   regionInfoLayer.update();
 }
 
-export default function addCTLayer(map, alrBoundaries, ctBoundaries, regionInfoPointer) {
-  regionInfoLayer = regionInfoPointer;
-  drawALRBoundaries(map, alrBoundaries);
-  drawCTBoundaries(map, ctBoundaries);
+export default function addCTLayer(mapRef, ctBoundaryData, regionInfoRef) {
+  map = mapRef;
+  ctBoundaries = ctBoundaryData;
+  regionInfoLayer = regionInfoRef;
+  drawCTBoundaries(mapRef, ctBoundaries, 'population');
 }
 

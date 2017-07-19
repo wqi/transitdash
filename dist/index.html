@@ -21,6 +21,23 @@
           <input type="checkbox" id="showBusRoutes">
           <label for="showBusRoutes">Show Bus Routes</label>
         </div>
+        <div id="choroplethFeature">
+          <h4> Choropleth Feature: </h4>
+          <div id="choroplethDropdown" class="ui selection dropdown">
+            <input name="gender" type="hidden" value="population">
+            <i class="dropdown icon"></i>
+            <div class="text">Population</div>
+            <div class="menu">
+                <div class="item" data-value="population">Population</div>
+                <div class="item" data-value="number_of_bus_stops">Number of Bus Stops</div>
+                <div class="item" data-value="number_of_routes">Number of Bus Routes</div>
+               <div class="item" data-value="residential_total_buildings">Number of Residential Buildings</div>
+               <div class="item" data-value="retail_total_buildings">Number of Retail Buildings</div>
+               <div class="item" data-value="office_total_buildings">Number of Office Buildings</div>
+               <div class="item" data-value="industrial_total_buildings">Number of Industrial Buildings</div>
+            </div>
+         </div>
+        </div>
       </div>
       <div id="map" class="thirteen wide column"></div>
     </div>

@@ -20,20 +20,19 @@ let regionInfoLayer;
 
 // Load data
 d3.queue()
-    .defer(d3.json, 'data/agricultural_land_reserve.geojson')
     .defer(d3.json, 'data/surrey_2016_filtered.geojson')
     .defer(d3.json, 'data/surrey_stops.geojson')
     .defer(d3.json, 'data/bus_routes.geojson')
     .await(drawLayers);
 
-function drawLayers(err, alrBoundaries, ctBoundaries, busStops, busRoutes) {
+function drawLayers(err, ctBoundaries, busStops, busRoutes) {
   if (err) {
     console.error(err);
     return;
   }
 
   regionInfoLayer = addRegionInfoLayer();
-  addCTLayer(map, alrBoundaries, ctBoundaries, regionInfoLayer);
+  addCTLayer(map, ctBoundaries, regionInfoLayer);
   initBusStopLayer(map, busStops);
   initBusRouteLayer(map, busRoutes);
 }
@@ -49,17 +48,27 @@ function addRegionInfoLayer() {
 
   regionInfo.update = function update(regionProps) {
     let regionInfoBody;
-    if (regionProps && regionProps.CTUID != 'ALR') {
+    if (regionProps) {
       regionInfoBody = `<b>Census Tract ID:</b> ${regionProps.CTUID}<br />
+                        <br />
+                        <h4>Demographics:</h4>
+                        <b>Population:</b> ${Math.floor(regionProps.population)}<br />
+                        <br />
+                        <h4>Transportation:</h4>
                         <b>Number of Bus Stops:</b> ${regionProps.number_of_bus_stops}<br />
                         <b>Number of Bus Routes:</b> ${regionProps.number_of_bus_stops}<br />
-                        <b>Population:</b> ${Math.floor(regionProps.population)}<br />
-                        <b>Points of Interest:</b> ${regionProps.sum_of_points_of_interest}<br />`;
+                        <br />
+                        <h4>Zoning:</h4>
+                        <b>Points of Interest:</b> ${regionProps.sum_of_points_of_interest}<br />
+                        <b>Number of Residential Buildings:</b> ${regionProps.residential_total_buildings}<br />
+                        <b>Number of Retail Buildings:</b> ${regionProps.retail_total_buildings}<br />
+                        <b>Number of Office Buildings:</b> ${regionProps.office_total_buildings}<br />
+                        <b>Number of Industrial Buildings:</b> ${regionProps.industrial_total_buildings}<br />`;
       console.log(regionProps);
     } else {
       regionInfoBody = 'Hover over a region';
     }
-    const regionInfoHTML = `<h4>Region Properties</h4> ${regionInfoBody}`;
+    const regionInfoHTML = `<h3>Region Properties</h3> ${regionInfoBody}`;
 
     this.div.innerHTML = regionInfoHTML;
   };
