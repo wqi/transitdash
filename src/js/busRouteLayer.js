@@ -8,14 +8,20 @@ let busRouteLayer;
 // Toggle bus route layer based on checkbox
 $('#showBusRoutes').change(() => {
   if ($('#showBusRoutes').prop('checked')) {
-    busRouteLayer = addBusRouteLayer(map, busRoutes);
+    busRouteLayer = addLayer(map, busRoutes);
   } else {
-    map.removeLayer(busRouteLayer);
+    removeLayer();
   }
 });
 
-function addBusRouteLayer(map, busRoutes) {
-  // Draw census tract boundaries
+// Initialize BusRouteLayer with required data and references
+function init(mapRef, busRouteData) {
+  busRoutes = busRouteData;
+  map = mapRef;
+}
+
+// Draw BusRouteLayer on map
+function addLayer(map, busRoutes) {
   const brStyle = {
     weight: 2,
     fillOpacity: 0.2,
@@ -24,7 +30,6 @@ function addBusRouteLayer(map, busRoutes) {
   const busRouteLayer = L.geoJson(busRoutes, {
     style: brStyle,
     onEachFeature: (feature, layer) => {
-      console.log(feature.properties);
       const header = `${feature.properties.trips_ro_2} - ${feature.properties.trips_ro_3}`;
       const html = `<div class='mapPopup'>
                       <b class='popupHeader'> ${header} </b><br/ >
@@ -37,7 +42,13 @@ function addBusRouteLayer(map, busRoutes) {
   return busRouteLayer;
 }
 
-export default function initBusRouteLayer(mapRef, busRouteData) {
-  busRoutes = busRouteData;
-  map = mapRef;
+// Remove BusRouteLayer from map
+function removeLayer() {
+  map.removeLayer(busRouteLayer);
 }
+
+export default {
+  init,
+  addLayer,
+  removeLayer,
+};

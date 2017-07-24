@@ -1,9 +1,10 @@
 import L from 'leaflet';
 import * as d3 from 'd3';
 
-import addCTLayer from './js/ctLayer';
-import initBusStopLayer from './js/busStopLayer';
-import initBusRouteLayer from './js/busRouteLayer';
+import Menu from './js/menu';
+import CTLayer from './js/ctLayer';
+import BusStopLayer from './js/busStopLayer';
+import BusRouteLayer from './js/busRouteLayer';
 
 import './css/main.css';
 import './css/leaflet.css';
@@ -20,21 +21,24 @@ let regionInfoLayer;
 
 // Load data
 d3.queue()
-    .defer(d3.json, 'data/surrey_2016_filtered.geojson')
+    .defer(d3.json, 'data/census_tract_boundaries.geojson')
     .defer(d3.json, 'data/surrey_stops.geojson')
     .defer(d3.json, 'data/bus_routes.geojson')
-    .await(drawLayers);
+    .await(initMap);
 
-function drawLayers(err, ctBoundaries, busStops, busRoutes) {
+function initMap(err, ctBoundaries, busStops, busRoutes) {
   if (err) {
     console.error(err);
     return;
   }
 
   regionInfoLayer = addRegionInfoLayer();
-  addCTLayer(map, ctBoundaries, regionInfoLayer);
-  initBusStopLayer(map, busStops);
-  initBusRouteLayer(map, busRoutes);
+  Menu.init(map, regionInfoLayer);
+  CTLayer.init(map, ctBoundaries, regionInfoLayer);
+  BusStopLayer.init(map, busStops);
+  BusRouteLayer.init(map, busRoutes);
+
+  CTLayer.addLayer('population');
 }
 
 function addRegionInfoLayer() {
@@ -64,7 +68,6 @@ function addRegionInfoLayer() {
                         <b>Number of Retail Buildings:</b> ${regionProps.retail_total_buildings}<br />
                         <b>Number of Office Buildings:</b> ${regionProps.office_total_buildings}<br />
                         <b>Number of Industrial Buildings:</b> ${regionProps.industrial_total_buildings}<br />`;
-      console.log(regionProps);
     } else {
       regionInfoBody = 'Hover over a region';
     }

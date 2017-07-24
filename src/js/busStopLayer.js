@@ -8,13 +8,20 @@ let busStopLayer;
 // Toggle bus stop layer based on checkbox
 $('#showBusStops').change(() => {
   if ($('#showBusStops').prop('checked')) {
-    busStopLayer = addBusStopLayer(map, busStops);
+    busStopLayer = addLayer(map, busStops);
   } else {
-    map.removeLayer(busStopLayer);
+    removeLayer();
   }
 });
 
-function addBusStopLayer(map, busStops) {
+// Initialize BusStopLayer with required data and references
+function init(mapRef, busStopData) {
+  busStops = busStopData;
+  map = mapRef;
+}
+
+// Add BusStopLayer to map
+function addLayer(map, busStops) {
   const geojsonMarkerOptions = {
     radius: 8,
     fillColor: '#ff7800',
@@ -43,9 +50,13 @@ function addBusStopLayer(map, busStops) {
   return busStopLayer;
 }
 
-export default function initBusStopLayer(mapRef, busStopData) {
-  busStops = busStopData;
-  map = mapRef;
-
-  busStopLayer = addBusStopLayer(map, busStops);
+// Remove BusStopLayer from map
+function removeLayer() {
+  map.removeLayer(busStopLayer);
 }
+
+export default {
+  init,
+  addLayer,
+  removeLayer,
+};

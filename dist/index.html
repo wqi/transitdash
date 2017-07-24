@@ -14,17 +14,28 @@
       <div id="sideMenu" class="three wide column">
         <h1 id="sideMenuTitle" class="ui header">Transportation Dashboard</h1>
         <div class="ui checked checkbox option">
-          <input type="checkbox" id="showBusStops" checked="">
+          <input type="checkbox" id="showBusStops">
           <label for="showBusStops">Show Bus Stops</label>
         </div>
         <div class="ui checkbox option">
           <input type="checkbox" id="showBusRoutes">
           <label for="showBusRoutes">Show Bus Routes</label>
         </div>
-        <div id="choroplethFeature">
+        <div class="dropdownOption">
+          <h4> Region Boundaries: </h4>
+          <div id="boundaryDropdown" class="ui selection dropdown">
+            <input name="gender" type="hidden" value="population">
+            <i class="dropdown icon"></i>
+            <div class="text">Census Tracts</div>
+            <div class="menu">
+                <div class="item" data-value="census_tracts">Census Tracts</div>
+                <div class="item" data-value="town_centres">Town Centres</div>
+            </div>
+         </div>
+        </div>
+        <div class="dropdownOption">
           <h4> Choropleth Feature: </h4>
           <div id="choroplethDropdown" class="ui selection dropdown">
-            <input name="gender" type="hidden" value="population">
             <i class="dropdown icon"></i>
             <div class="text">Population</div>
             <div class="menu">

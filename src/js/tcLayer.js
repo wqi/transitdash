@@ -4,26 +4,28 @@ import 'leaflet-choropleth';
 import '../css/semantic';
 
 let map;
-let ctBoundaries;
+let tcBoundaries;
 let regionInfoLayer;
-let ctLayer;
+let tcLayer;
 
-// Initialize CTLayer with required data and references
-function init(mapRef, ctBoundaryData, regionInfoRef) {
+// Initialize TCLayer with required data and references
+function init(mapRef, tcBoundaryData, regionInfoRef) {
   map = mapRef;
-  ctBoundaries = ctBoundaryData;
+  tcBoundaries = tcBoundaryData;
   regionInfoLayer = regionInfoRef;
 }
 
-// Draw CTLayer on map
+// Draw TCLayer on map
 function addLayer(choroplethMode) {
+  console.log(choroplethMode);
   const ctStyle = {
     color: 'white',
     weight: 1,
     fillOpacity: 0.5,
   };
 
-  const ctOnEach = (feature, layer) => {
+  const tcOnEach = (feature, layer) => {
+    console.log(feature.properties);
     layer.on({
       mouseover: (e) => {
         const region = e.target;
@@ -33,18 +35,18 @@ function addLayer(choroplethMode) {
         regionInfoLayer.update(region.feature.properties);
       },
       mouseout: (e) => {
-        ctLayer.resetStyle(e.target);
+        tcLayer.resetStyle(e.target);
         regionInfoLayer.update();
       },
     });
   };
-
-  ctLayer = L.choropleth(ctBoundaries, { valueProperty: choroplethMode, scale: ['#BFBFBF', 'red'], style: ctStyle, onEachFeature: ctOnEach }).addTo(map);
+  console.log(tcBoundaries);
+  tcLayer = L.choropleth(tcBoundaries, { valueProperty: choroplethMode, scale: ['#BFBFBF', 'red'], style: ctStyle, onEachFeature: tcOnEach }).addTo(map);
 }
 
-// Remove CTLayer from map
+// Remove TCLayer from map
 function removeLayer() {
-  map.removeLayer(ctLayer);
+  map.removeLayer(tcLayer);
 }
 
 export default {
