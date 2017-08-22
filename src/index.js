@@ -53,7 +53,13 @@ function addRegionInfoLayer() {
   regionInfo.update = function update(regionProps) {
     let regionInfoBody;
     if (regionProps) {
-      regionInfoBody = `<b>Census Tract ID:</b> ${regionProps.CTUID}<br />
+      // Set ID of popup according to selected boundary type
+      let regionInfoID = `<b>Census Tract ID:</b> ${regionProps.CTUID}<br />`;
+      if (!Object.prototype.hasOwnProperty.call(regionProps, 'CTUID')) {
+        regionInfoID = `<b>Town Centre Name:</b> ${regionProps.NAME}<br />`;
+      }
+
+      regionInfoBody = `${regionInfoID}
                         <br />
                         <h4>Demographics:</h4>
                         <b>Population:</b> ${Math.floor(regionProps.population)}<br />
@@ -71,8 +77,8 @@ function addRegionInfoLayer() {
     } else {
       regionInfoBody = 'Hover over a region';
     }
-    const regionInfoHTML = `<h3>Region Properties</h3> ${regionInfoBody}`;
 
+    const regionInfoHTML = `<h3>Region Properties</h3> ${regionInfoBody}`;
     this.div.innerHTML = regionInfoHTML;
   };
 
