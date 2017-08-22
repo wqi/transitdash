@@ -13,7 +13,7 @@
     <div id="container" class="ui grid">
       <div id="sideMenu" class="three wide column">
         <h1 id="sideMenuTitle" class="ui header">Transportation Dashboard</h1>
-        <div class="ui checked checkbox option">
+        <div class="ui checkbox option busStop">
           <input type="checkbox" id="showBusStops">
           <label for="showBusStops">Show Bus Stops</label>
         </div>
@@ -46,6 +46,20 @@
                <div class="item" data-value="retail_total_buildings">Number of Retail Buildings</div>
                <div class="item" data-value="office_total_buildings">Number of Office Buildings</div>
                <div class="item" data-value="industrial_total_buildings">Number of Industrial Buildings</div>
+            </div>
+         </div>
+        </div>
+        <div class="dropdownOption">
+          <h4> Bus Stop Colour Feature: </h4>
+          <div id="busStopDropdown" class="ui selection dropdown">
+            <i class="dropdown icon"></i>
+            <div class="text">None</div>
+            <div class="menu">
+                <div class="item" data-value="none">None</div>
+                <div class="item" data-value="service_count">Service Count</div>
+                <div class="item" data-value="boardings">Boardings</div>
+                <div class="item" data-value="alightings">Alightings</div>
+                <div class="item" data-value="boardings_and_alightings">Boardings and Alightings</div>
             </div>
          </div>
         </div>

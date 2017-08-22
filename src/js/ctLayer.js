@@ -39,7 +39,7 @@ function addLayer(choroplethMode) {
     });
   };
 
-  ctLayer = L.choropleth(ctBoundaries, { valueProperty: choroplethMode, scale: ['#BFBFBF', 'red'], style: ctStyle, onEachFeature: ctOnEach }).addTo(map);
+  ctLayer = L.choropleth(ctBoundaries, { valueProperty: choroplethMode, scale: ['#BFBFBF', 'blue'], style: ctStyle, onEachFeature: ctOnEach }).addTo(map);
 }
 
 // Remove CTLayer from map
