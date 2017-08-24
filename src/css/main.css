@@ -9,17 +9,29 @@ html, body {
 }
 
 #sideMenu {
+  color: #6A737B;
   height: 100%;
   background-color: #F1F1F1;
 }
 
 #sideMenuTitle {
-  text-align: center;
+  width: 90%;
+  padding-left: 5%;
+  padding-top: 25px;
+  padding-bottom: 35px;
 }
 
 .dropdownOption {
   margin-top: 30px;
   margin-left: 17px;
+}
+
+.dropdown.icon {
+  color: #77a22f;
+}
+
+.leaflet-bar > a {
+  color: #77a22f !important;
 }
 
 #map {
@@ -39,14 +51,16 @@ html, body {
 }
 
 .info {
+    color: #6A737B;
+    font-size: 14px;
     margin-right: 50px;
     padding: 6px 8px;
-    font: 14px/16px Arial, Helvetica, sans-serif;
     background: white;
     background: rgba(255,255,255,0.8);
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     border-radius: 5px;
 }
+
 .info h4 {
     margin: 0 0 5px;
     color: #777;
