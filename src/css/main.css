@@ -18,7 +18,11 @@ html, body {
   width: 90%;
   padding-left: 5%;
   padding-top: 25px;
-  padding-bottom: 35px;
+  padding-bottom: 25px;
+}
+
+.divider {
+  padding-bottom: 5px;
 }
 
 .dropdownOption {
@@ -52,7 +56,7 @@ html, body {
 
 .info {
     color: #6A737B;
-    font-size: 14px;
+    font-size: 14px ;
     margin-right: 50px;
     padding: 6px 8px;
     background: white;
@@ -61,9 +65,13 @@ html, body {
     border-radius: 5px;
 }
 
+.info h3 {
+  color: #77a22f;
+}
+
 .info h4 {
     margin: 0 0 5px;
-    color: #777;
+    color: #77a22f;
 }
 
 .checkbox {

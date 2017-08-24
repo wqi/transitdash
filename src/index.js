@@ -63,14 +63,21 @@ function addRegionInfoLayer() {
                         <br />
                         <h4>Demographics:</h4>
                         <b>Population:</b> ${Math.floor(regionProps.population)}<br />
+                        <b>Population / KM<sup>2</sup> :</b> ${Number.parseFloat(regionProps.population_density).toFixed(3)}<br />
+                        <b>Number of Jobs:</b> ${Math.floor(regionProps.employment)}<br />
+                        <b>Jobs / KM<sup>2</sup> :</b> ${Number.parseFloat(regionProps.employment_density).toFixed(3)}<br />
+                        <b>Jobs per Resident:</b> ${Number.parseFloat(regionProps.jobs_per_resident).toFixed(3)}<br />
                         <br />
                         <h4>Transportation:</h4>
                         <b>Number of Bus Stops:</b> ${regionProps.number_of_bus_stops}<br />
-                        <b>Number of Bus Routes:</b> ${regionProps.number_of_bus_stops}<br />
+                        <b>Bus Stops / KM<sup>2</sup> :</b> ${Number.parseFloat(regionProps.bus_stop_density).toFixed(3)}<br />
+                        <b>Number of Bus Routes:</b> ${regionProps.number_of_routes}<br />
+                        <b>Bus Routes / KM<sup>2</sup> :</b> ${Number.parseFloat(regionProps.bus_route_density).toFixed(3)}<br />
                         <br />
                         <h4>Zoning:</h4>
                         <b>Points of Interest:</b> ${regionProps.sum_of_points_of_interest}<br />
                         <b>Number of Residential Buildings:</b> ${regionProps.residential_total_buildings}<br />
+                        <b>Average Residential Occupancy:</b> ${Number.parseFloat(regionProps.average_residential_occupancy).toFixed(3)}<br />
                         <b>Number of Retail Buildings:</b> ${regionProps.retail_total_buildings}<br />
                         <b>Number of Office Buildings:</b> ${regionProps.office_total_buildings}<br />
                         <b>Number of Industrial Buildings:</b> ${regionProps.industrial_total_buildings}<br />`;
