@@ -84,7 +84,6 @@ function addLayer(busStopMode) {
 // Remove BusStopLayer from map
 function removeLayer() {
   if (busStopLayer) {
-    console.log(busStopLayer);
     map.removeLayer(busStopLayer);
   }
 }
