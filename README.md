@@ -1,5 +1,5 @@
-# Transporation Dashboard
-This transportation dashboard was developed as part of the [Data Science for Social Good](https://dsi.ubc.ca/data-science-social-good-dssg-program) program at the University of British Columbia. It provides a layered interface for visualization of public transportation networks and service availability, with options to explore how transportation and socioeconomic factors interact within a region. 
+# Transit Dashboard
+This public transportation dashboard was developed as part of the [Data Science for Social Good](https://dsi.ubc.ca/data-science-social-good-dssg-program) program at the University of British Columbia. It provides a layered interface for visualization of public transportation networks and service availability, with options to explore how transportation and socioeconomic factors interact within a region. 
 
 Although the default implementation is configured for the City of Surrey, BC, the dashboard is designed to be region agnostic and can be easily reconfigured for any other region by swapping out the data files and default map boundaries.
 
