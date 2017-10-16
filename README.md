@@ -3,6 +3,8 @@ This public transportation dashboard was developed as part of the [Data Science 
 
 Although the default implementation is configured for the City of Surrey, BC, the dashboard is designed to be region agnostic and can be easily reconfigured for any other region by swapping out the data files and default map boundaries.
 
+![screenshot](https://i.imgur.com/QDnk3Xa.jpg)
+
 ## Setup
 1. Ensure that Node.js 6.10.x or later is installed.
 2. Run ```npm install``` in the root of the repository.
